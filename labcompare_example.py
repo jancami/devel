@@ -22,22 +22,22 @@ plotrange = [5330,5380]
 pythia = EdiblesOracle()
 List = pythia.GetObsListByWavelength(5338)
 for filename in List: 
-	sp = EdiblesSpectrum(filename)
-	wave = sp.wave
-	flux = np.clip(sp.flux, 0, None) 
-	bool_keep = (wave > plotrange[0]) & (wave < plotrange[1])
-	plotwave = wave[bool_keep]
-	plotflux = flux[bool_keep]
-	normflux = plotflux / np.median(plotflux)
-	plt.figure()
-	plt.xlim(5330,5380)
-	ylim = [np.min(normflux), np.max(normflux)]
-	plt.ylim(ylim)
-	plt.plot(plotwave, normflux)
-	# Rescale lab spectrum to plot range
-	dynrange = ylim[1]-ylim[0]
-	plt.plot(labspec.wavelength, labspec.norm * dynrange/5 + 1)
-	plt.show()
+    sp = EdiblesSpectrum(filename)
+    wave = sp.wave
+    flux = np.clip(sp.flux, 0, None) 
+    bool_keep = (wave > plotrange[0]) & (wave < plotrange[1])
+    plotwave = wave[bool_keep]
+    plotflux = flux[bool_keep]
+    normflux = plotflux / np.median(plotflux)
+    plt.figure()
+    plt.xlim(5330,5380)
+    ylim = [np.min(normflux), np.max(normflux)]
+    plt.ylim(ylim)
+    plt.plot(plotwave, normflux)
+    # Rescale lab spectrum to plot range
+    dynrange = ylim[1]-ylim[0]
+    plt.plot(labspec.wavelength, labspec.norm * dynrange/5 + 1)
+    plt.show()
 
 #plt.plot(labspec.wavelength,labspec.int)
 #plt.show()
