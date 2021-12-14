@@ -1,6 +1,13 @@
 import numpy as np
 import time
 
+def powered_sum4(n,k):
+    array1 = np.tile(np.arange(float(1),k+1),(n+1,1))
+    powers = np.reshape(np.repeat(np.arange(n+1), k), (n+1, k))
+    result = np.power(array1,powers)
+    result = result.sum(axis=1)
+    return(result)
+
 def powered_sum3(n,k):
     array1 = np.tile(np.arange(float(1),k+1),(n+1,1))
     powers = np.reshape(np.repeat(np.arange(n+1), k), (n+1, k))
@@ -28,12 +35,17 @@ def powered_sum(n,k):
     return(result)
 
 if __name__ == "__main__":
+    n=3
+    k=3
     t0=time.time()
-    a1=powered_sum(4,5)
+    a1=powered_sum(n,k)
     t1 = time.time()
-    a2=powered_sum2(4,5)
+    a2=powered_sum2(n,k)
     t2 = time.time()
-    a3=powered_sum3(4,5)
+    a3=powered_sum3(n,k)
     t3 = time.time()
-    print(a1, a2, a3)
-    print(t1-t0, t2-t1, t3-t2)
+    a4=powered_sum4(n,k)
+    t4 = time.time()
+    
+    print(a1, a2, a3, a4)
+    print(t1-t0, t2-t1, t3-t2, t4-t3)
